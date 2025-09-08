@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link rel="stylesheet" href="/static/styles.css">-->
+    </head>
+    <body>
+        <h2>Scoreboard Control</h2>
+        <label>Team 1 Name: <input id="team1Name"></label>
+        <label>Score: <input type="number" id="team1Score"></label><br>
+
+        <label>Team 2 Name: <input id="team2Name"></label>
+        <label>Score: <input type="number" id="team2Score"></label><br>
+
+        <label>Period Name: <input id="periodName"></label>
+        <label>Period Value: <input type="number" id="periodValue"></label><br>
+
+        <label>Timer (MM:SS): <input id="timer"></label><br>
+        <label>Timer Direction:
+            <select id="timerDirection">
+                <option value="up">Count Up</option>
+                <option value="down">Count Down</option>
+            </select>
+        </label>
+        <label>Target Time (MM:SS): <input id="timerTarget"></label><br>
+
+
+        <button onclick="updateScoreboard()">Update</button>
+        <button onclick="startTimer()">Start Timer</button>
+        <button onclick="stopTimer()">Stop Timer</button>
+        <button onclick="resetTimer()">Reset Timer</button>
+        <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+        <script>
+            const socket = io();
+            socket.emit('request_score');
+            let timerRunning = false;
+        
+            socket.on('score_update', data => {
+                timerRunning = data.timer_running;
+                document.getElementById('timer').value = data.timer;
+                // Only update other fields if timer is not running
+                if (!timerRunning) {
+                    document.getElementById('team1Name').value = data.team1.name;
+                    document.getElementById('team1Score').value = data.team1.score;
+                    document.getElementById('team2Name').value = data.team2.name;
+                    document.getElementById('team2Score').value = data.team2.score;
+                    document.getElementById('periodName').value = data.period.name;
+                    document.getElementById('periodValue').value = data.period.value;
+                    document.getElementById('timerDirection').value = data.timer_direction;
+                    document.getElementById('timerTarget').value = data.timer_target;
+                }
+            });
+        
+            function updateScoreboard() {
+                socket.emit('update', {
+                    team1: { name: document.getElementById('team1Name').value, score: parseInt(document.getElementById('team1Score').value) },
+                    team2: { name: document.getElementById('team2Name').value, score: parseInt(document.getElementById('team2Score').value) },
+                    timer: document.getElementById('timer').value,
+                    period: { name: document.getElementById('periodName').value, value: parseInt(document.getElementById('periodValue').value) },
+                    timer_direction: document.getElementById('timerDirection').value,
+                    timer_target: document.getElementById('timerTarget').value
+                });
+            }
+            function startTimer() { socket.emit('timer_control', { action: 'start' }); }
+            function stopTimer() { socket.emit('timer_control', { action: 'stop' }); }
+            function resetTimer() { socket.emit('timer_control', { action: 'reset' }); }
+        </script>
+    </body>
+</html>

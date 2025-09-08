@@ -1,0 +1,95 @@
+.scoreboard-bar {
+    display: flex;
+    margin: 0px auto;
+    width: fit-content;
+}
+
+.team {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team-name {
+    text-align: center;
+    font-family: 'Barlow';
+    font-size: 2.5em;
+    color: #fff;
+    background: #b00;
+    font-weight: 500;
+    color: #fff;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0px;
+    min-width: 85px;
+}
+
+.team-score {
+    font-family: 'Barlow';
+    font-size: 2.5em;
+    font-weight: 500;
+    color: #fff;
+    background: #c00;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0px;
+    border-radius: 0px;
+}
+
+#team1Score {
+    border-right: 2px solid #b00;
+}
+
+#team2Score {
+    border-left: 2px solid #b00;
+}
+
+.timer {
+    display: flex;
+    font-family: 'Barlow';
+    font-size: 2.5em;
+    font-weight: 500;
+    justify-content: center;
+    color: #fff;
+    background: #c00;
+    align-items: center;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0px;
+    border-radius: 0px;
+    height: 50px;
+    min-width: 115px;
+}
+
+.period {
+    font-family: 'Barlow';
+    font-size: 2.5em;
+    font-weight: 500;
+    color: #fff;
+    background: #b00;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0px;
+    border-radius: 0px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+a:link{
+    color: #00e;
+}
+
+a:visited{
+    color: #00e;
+}
