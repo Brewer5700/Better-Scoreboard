@@ -1,1 +1,1 @@
-pyinstaller --add-data static:static --add-data templates:templates --add-data scoreboard.json:. app.py
+pyinstaller --add-data static:static --add-data templates:templates app.py
