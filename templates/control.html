@@ -23,6 +23,9 @@
         </label>
         <label>Target Time (MM:SS): <input id="timerTarget"></label><br>
 
+        <label>Adjust Seconds</label>
+        <button onclick="upTimer()">Up</button>
+        <button onclick="downTimer()">Down</button><br>
 
         <button onclick="updateScoreboard()">Update</button>
         <button onclick="startTimer()">Start Timer</button>
@@ -63,6 +66,8 @@
             function startTimer() { socket.emit('timer_control', { action: 'start' }); }
             function stopTimer() { socket.emit('timer_control', { action: 'stop' }); }
             function resetTimer() { socket.emit('timer_control', { action: 'reset' }); }
+            function upTimer() { socket.emit('timer_control', { action: 'up' }); }
+            function downTimer() { socket.emit('timer_control', { action: 'down' }); }
         </script>
     </body>
 </html>

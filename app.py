@@ -112,6 +112,16 @@ def handle_timer_control(data):
                 score_data["timer"] = score_data["timer_target"]
             else:
                 score_data["timer"] = "00:00"
+        elif action == 'up':
+            timer = parse_time(score_data["timer"])
+            timer += 1
+            timer = format_time(timer)
+            score_data["timer"] = timer
+        elif action == 'down':
+            timer = parse_time(score_data["timer"])
+            timer -= 1
+            timer = format_time(timer)
+            score_data["timer"] = timer
     save_score_data()
     socketio.emit('score_update', score_data)
 
