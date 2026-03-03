@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
-from engineio.async_drivers import gevent
 import threading
 import time
 import json
