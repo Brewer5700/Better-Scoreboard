@@ -1,1 +1,1 @@
-pyinstaller --add-data static:static --add-data templates:templates app.py
+pyinstaller --add-data static:static --add-data templates:templates --hidden-import engineio.async_drivers.threading --onefile app.py

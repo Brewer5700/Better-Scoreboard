@@ -6,7 +6,7 @@ import json
 import os
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode='threading')
 
 
 def save_score_data():
